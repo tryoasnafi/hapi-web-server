@@ -11,7 +11,9 @@ const routes = [
     path: "/",
     handler: (request, h) => {
       return h
-        .response(`Halaman tidak dapat diakses dengan method ${request.method}`)
+        .response(
+          `Halaman tidak dapat diakses dengan method ${request.method.toUpperCase()}`
+        )
         .code(400);
     },
   },
@@ -27,8 +29,18 @@ const routes = [
     path: "/about",
     handler: (request, h) => {
       return h
-        .response(`Halaman tidak dapat diakses dengan method ${request.method}`)
+        .response(
+          `Halaman tidak dapat diakses dengan method ${request.method.toUpperCase()}`
+        )
         .code(400);
+    },
+  },
+  {
+    method: "GET",
+    path: "/hello/{name?}",
+    handler: (request, h) => {
+      const { name = "stranger" } = request.params;
+      return `Hello, ${name}!`;
     },
   },
   {
